@@ -1,0 +1,35 @@
+[{
+    "name": "default",
+    "type": "postgres",
+    "entities": ["build/database/entities/**/*.js"],
+    "synchronize": true
+ }, {
+    "name": "dev",
+    "type": "postgres",
+    "entities": ["build/database/entities/**/*.js"],
+    "synchronize": true
+  },
+  {
+    "name": "prod",
+    "type": "postgres",
+    "ssl": true,
+    "extra": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    },
+    "entities": ["build/database/entities/**/*.js"],
+    "synchronize": true
+  },
+  {
+    "name": "test",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "password",
+    "database": "testdb",
+    "entities": ["src/database/entities/**/*.ts"],
+    "synchronize": true,
+    "dropSchema": true
+  }]

@@ -1,0 +1,35 @@
+version: "3.4"
+volumes: 
+  pg_vol:
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  db:
+    container_name: db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - pg_vol:/var/lib/postgresql/data
+    networks:
+      - app-network
+  webapp:
+    container_name: webapp
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgres://postgres:password@db:5432/app
+    ports:
+      - "3001:3001"
+    networks: 
+      - app-network
+    depends_on:
+      - db
