@@ -33,3 +33,4 @@ services:
       - app-network
     depends_on:
       - db
+    restart: on-failure:5   
