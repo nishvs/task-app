@@ -25,6 +25,22 @@ curl --location --request POST 'localhost:3001/api/v1/tasks' \
     "status":"completed"
 }'
 
+Filter on status
+
+curl --location --request POST 'localhost:3001/api/v1/tasks/in-progress' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"task1",
+    "status":"completed"
+}'
+
+curl --location --request POST 'localhost:3001/api/v1/tasks/completed' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name":"task1",
+    "status":"completed"
+}'
+
 ## Update task by providing taskId in param
 curl --location --request PUT 'localhost:3001/api/v1/tasks/69ecb00f-9ab4-46c7-b0aa-f319c884cdc0' \
 --header 'Content-Type: application/json' \
